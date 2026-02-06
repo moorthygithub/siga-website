@@ -16,6 +16,8 @@ import JobRequireList from "./pages/jobs/JobRequireList.jsx";
 import { Toaster } from "sonner";
 import SuspenseLoader from "./components/loader/SuspenseLoader.jsx";
 import GalleryAllByYear from "./pages/gallery/GalleryAllByYear.jsx";
+import EventAnnouncement from "./pages/event/EventAnnouncement.jsx";
+import EventAnnounce from "./pages/event/EventAnnounce.jsx";
 
 const Home = lazy(() => import("./pages/home/Home"));
 const Contact = lazy(() => import("./pages/contact/Contact"));
@@ -66,7 +68,7 @@ function App() {
               path="/event"
               element={
                 <Suspense fallback={<SuspenseLoader />}>
-                  <EventSection />
+                  <EventAnnouncement/>
                 </Suspense>
               }
             />
