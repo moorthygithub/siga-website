@@ -1,12 +1,22 @@
 import React, { useEffect, useState, useRef } from "react";
-import { motion, AnimatePresence, animate, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  animate,
+  useReducedMotion,
+} from "framer-motion";
 import { DollarSign, Award, ChevronRight } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1];
 
 export default function EventAnnouncement() {
   const shouldReduce = useReducedMotion();
-  const [stats, setStats] = useState({ years: 0, brands: 0, states: 0, visitors: 0 });
+  const [stats, setStats] = useState({
+    years: 0,
+    brands: 0,
+    states: 0,
+    visitors: 0,
+  });
   const [openReg, setOpenReg] = useState(false);
   const [parallaxY, setParallaxY] = useState(0);
   const [accordionOpen, setAccordionOpen] = useState(null);
@@ -32,7 +42,7 @@ export default function EventAnnouncement() {
     "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=200&h=200&fit=crop&q=80&13",
     "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=200&h=200&fit=crop&q=80&14",
     "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=200&h=200&fit=crop&q=80&15",
-    "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?w=200&h=200&fit=crop&q=80&16"
+    "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?w=200&h=200&fit=crop&q=80&16",
   ];
 
   // count-up
@@ -46,25 +56,25 @@ export default function EventAnnouncement() {
       animate(0, 30, {
         duration: 1.1,
         onUpdate: (v) => setStats((s) => ({ ...s, years: Math.round(v) })),
-      })
+      }),
     );
     c.push(
       animate(0, 500, {
         duration: 1.25,
         onUpdate: (v) => setStats((s) => ({ ...s, brands: Math.round(v) })),
-      })
+      }),
     );
     c.push(
       animate(0, 20, {
         duration: 1.05,
         onUpdate: (v) => setStats((s) => ({ ...s, states: Math.round(v) })),
-      })
+      }),
     );
     c.push(
       animate(0, 10000, {
         duration: 1.35,
         onUpdate: (v) => setStats((s) => ({ ...s, visitors: Math.round(v) })),
-      })
+      }),
     );
 
     return () => c.forEach((x) => x.stop && x.stop());
@@ -105,7 +115,11 @@ export default function EventAnnouncement() {
   // focus trap (basic)
   useEffect(() => {
     if (!openReg || !modalRef.current) return;
-    const nodes = Array.from(modalRef.current.querySelectorAll("a,button,input,textarea,select,[tabindex]:not([tabindex='-1'])")).filter((n) => !n.hasAttribute("disabled"));
+    const nodes = Array.from(
+      modalRef.current.querySelectorAll(
+        "a,button,input,textarea,select,[tabindex]:not([tabindex='-1'])",
+      ),
+    ).filter((n) => !n.hasAttribute("disabled"));
     if (nodes.length) nodes[0].focus();
     const onKey = (e) => {
       if (e.key !== "Tab") return;
@@ -130,7 +144,6 @@ export default function EventAnnouncement() {
     el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  
   const downloadRegistrationForm = () => {
     const content = `South India Garments Association (SIGA) - Registration Form\n\nName:\nCompany:\nEmail:\nPhone:\nStall Type:\nNumber of Sq.M:\nAdditional Requirements:\n\n(Please fill and send scanned copy to info.sigafair@gmail.com)`;
     const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
@@ -147,7 +160,8 @@ export default function EventAnnouncement() {
   // submit modal form (UI-only)
   const submitForm = (e) => {
     e.preventDefault();
-    if (!form.name || !form.email) return alert("Please provide name and email");
+    if (!form.name || !form.email)
+      return alert("Please provide name and email");
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -214,13 +228,25 @@ export default function EventAnnouncement() {
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-6">
-              <span className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-[#fff0f0] to-[#fff9f8] text-[#780900] text-sm font-semibold shadow-sm">31ST EDITION • 2026</span>
+              <span className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-[#fff0f0] to-[#fff9f8] text-[#780900] text-sm font-semibold shadow-sm">
+                31ST EDITION • 2026
+              </span>
 
-              <h1 className="mt-6 text-3xl sm:text-4xl lg:text-6xl font-extrabold leading-tight tracking-tight text-slate-900">31st SIGA Fair
-                <span className="block text-lg sm:text-2xl lg:text-3xl font-semibold text-slate-700 mt-2">Autumn Winter Collection</span>
+              <h1 className="mt-6 text-3xl sm:text-4xl lg:text-6xl font-extrabold leading-tight tracking-tight text-slate-900">
+                31st SIGA Fair
+                <span className="block text-lg sm:text-2xl lg:text-3xl font-semibold text-slate-700 mt-2">
+                  Autumn Winter Collection
+                </span>
               </h1>
 
-              <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-xl">Organized by <strong className="font-semibold text-slate-900">South India Garments Association (SIGA)</strong>. Join 500+ brands showcasing latest collections to retailers, wholesalers, and buyers nationwide.</p>
+              <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-xl">
+                Organized by{" "}
+                <strong className="font-semibold text-slate-900">
+                  South India Garments Association (SIGA)
+                </strong>
+                . Join 500+ brands showcasing latest collections to retailers,
+                wholesalers, and buyers nationwide.
+              </p>
 
               <div className="mt-6 flex flex-wrap gap-3 items-center">
                 <motion.button
@@ -241,28 +267,58 @@ export default function EventAnnouncement() {
                   VIEW SCHEDULE
                 </button>
 
-                <div className="ml-0 sm:ml-2 text-sm text-slate-500 w-full sm:w-auto">Or call: <strong className="text-slate-900">96326 48525</strong></div>
+                <div className="ml-0 sm:ml-2 text-sm text-slate-500 w-full sm:w-auto">
+                  Or call:{" "}
+                  <strong className="text-slate-900">96326 48525</strong>
+                </div>
               </div>
 
               <div className="mt-6 flex flex-wrap gap-2">
-                <span className="px-3 py-1 rounded-full bg-white/90 border border-slate-100 shadow-sm text-xs">B2B Only</span>
-                <span className="px-3 py-1 rounded-full bg-white/90 border border-slate-100 shadow-sm text-xs">500+ Brands</span>
-                <span className="px-3 py-1 rounded-full bg-white/90 border border-slate-100 shadow-sm text-xs">10k+ Buyers</span>
+                <span className="px-3 py-1 rounded-full bg-white/90 border border-slate-100 shadow-sm text-xs">
+                  B2B Only
+                </span>
+                <span className="px-3 py-1 rounded-full bg-white/90 border border-slate-100 shadow-sm text-xs">
+                  500+ Brands
+                </span>
+                <span className="px-3 py-1 rounded-full bg-white/90 border border-slate-100 shadow-sm text-xs">
+                  10k+ Buyers
+                </span>
               </div>
 
               {/* small animated color accent */}
-              <div className="mt-6 w-36 h-2 rounded-full animated-gradient" aria-hidden></div>
+              <div
+                className="mt-6 w-36 h-2 rounded-full animated-gradient"
+                aria-hidden
+              ></div>
             </div>
 
             <div className="lg:col-span-6 relative">
-              <div style={{ transform: `translateY(${parallaxY * 0.45}px)` }} className="relative rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(199,46,72,0.12)]">
-                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&auto=format&fit=crop&q=80" alt="Fashion Exhibition" className="w-full h-[320px] sm:h-[420px] md:h-[520px] object-cover block" loading="lazy" />
+              <div
+                style={{ transform: `translateY(${parallaxY * 0.45}px)` }}
+                className="relative rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(199,46,72,0.12)]"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&auto=format&fit=crop&q=80"
+                  alt="Fashion Exhibition"
+                  className="w-full h-[320px] sm:h-[420px] md:h-[520px] object-cover block"
+                  loading="lazy"
+                />
 
-                <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="absolute -bottom-1 left-0 w-full h-12 opacity-80">
-                  <path d="M0,0 C150,100 350,0 600,50 C850,100 1050,10 1200,80 L1200,0 L0,0 Z" fill="#fff" opacity="0.65" />
+                <svg
+                  viewBox="0 0 1200 120"
+                  preserveAspectRatio="none"
+                  className="absolute -bottom-1 left-0 w-full h-12 opacity-80"
+                >
+                  <path
+                    d="M0,0 C150,100 350,0 600,50 C850,100 1050,10 1200,80 L1200,0 L0,0 Z"
+                    fill="#fff"
+                    opacity="0.65"
+                  />
                 </svg>
 
-                <div className="absolute top-5 left-5 bg-gradient-to-r from-white/20 to-white/5 rounded-lg px-3 py-1 backdrop-blur-sm text-white text-sm">Palace Grounds, Bangalore • 29–31 Jul 2026</div>
+                <div className="absolute top-5 left-5 bg-gradient-to-r from-white/20 to-white/5 rounded-lg px-3 py-1 backdrop-blur-sm text-white text-sm">
+                  Palace Grounds, Bangalore • 29–31 Jul 2026
+                </div>
 
                 {/* small color floating accents */}
                 <div className="absolute left-4 top-8 w-16 h-16 rounded-full bg-gradient-to-br from-[#CE1446] to-[#B2192B] opacity-20 blur-xl" />
@@ -283,29 +339,50 @@ export default function EventAnnouncement() {
         <section id="highlights" className="py-12 md:py-16 bg-white">
           <div className="mx-auto max-w-7xl px-4 md:px-10">
             <div className="text-center">
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">Event Highlights</h2>
-              <p className="text-slate-600 max-w-2xl mx-auto">Key statistics that define the scale and impact of SIGA Fair 2026</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
+                Event Highlights
+              </h2>
+              <p className="text-slate-600 max-w-2xl mx-auto">
+                Key statistics that define the scale and impact of SIGA Fair
+                2026
+              </p>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 md:mt-10">
               <div className="p-4 md:p-6 bg-gradient-to-br from-white to-[#fff7f6] border border-gray-100 rounded-2xl shadow transition hover:-translate-y-1">
-                <div className="text-2xl md:text-3xl font-extrabold text-[#CE1446]">{stats.years}+</div>
-                <div className="mt-1 text-xs md:text-sm text-slate-600">Industry leadership</div>
+                <div className="text-2xl md:text-3xl font-extrabold text-[#CE1446]">
+                  {stats.years}+
+                </div>
+                <div className="mt-1 text-xs md:text-sm text-slate-600">
+                  Industry leadership
+                </div>
               </div>
 
               <div className="p-4 md:p-6 bg-gradient-to-br from-white to-[#fff7f6] border border-gray-100 rounded-2xl shadow transition hover:-translate-y-1">
-                <div className="text-2xl md:text-3xl font-extrabold text-[#B2192B]">{stats.brands}+</div>
-                <div className="mt-1 text-xs md:text-sm text-slate-600">Exhibiting collections</div>
+                <div className="text-2xl md:text-3xl font-extrabold text-[#B2192B]">
+                  {stats.brands}+
+                </div>
+                <div className="mt-1 text-xs md:text-sm text-slate-600">
+                  Exhibiting collections
+                </div>
               </div>
 
               <div className="p-4 md:p-6 bg-gradient-to-br from-white to-[#fff7f6] border border-gray-100 rounded-2xl shadow transition hover:-translate-y-1">
-                <div className="text-2xl md:text-3xl font-extrabold text-[#D9737D]">{stats.states}+</div>
-                <div className="mt-1 text-xs md:text-sm text-slate-600">State participation</div>
+                <div className="text-2xl md:text-3xl font-extrabold text-[#D9737D]">
+                  {stats.states}+
+                </div>
+                <div className="mt-1 text-xs md:text-sm text-slate-600">
+                  State participation
+                </div>
               </div>
 
               <div className="p-4 md:p-6 bg-gradient-to-br from-white to-[#fff7f6] border border-gray-100 rounded-2xl shadow transition hover:-translate-y-1">
-                <div className="text-2xl md:text-3xl font-extrabold text-[#CE1446]">{stats.visitors.toLocaleString()}+</div>
-                <div className="mt-1 text-xs md:text-sm text-slate-600">Expected attendance</div>
+                <div className="text-2xl md:text-3xl font-extrabold text-[#CE1446]">
+                  {stats.visitors.toLocaleString()}+
+                </div>
+                <div className="mt-1 text-xs md:text-sm text-slate-600">
+                  Expected attendance
+                </div>
               </div>
             </div>
           </div>
@@ -323,18 +400,31 @@ export default function EventAnnouncement() {
             >
               {/* simple inline star SVG to avoid adding new imports */}
               <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#FEF2F2] rounded-full mb-4">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-[#780900]">
-                  <path d="M12 17.3l6.18 3.73-1.64-7.03L21 9.24l-7.19-.62L12 2 10.19 8.62 3 9.24l4.46 4.76L5.82 21z" fill="#780900"/>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="text-[#780900]"
+                >
+                  <path
+                    d="M12 17.3l6.18 3.73-1.64-7.03L21 9.24l-7.19-.62L12 2 10.19 8.62 3 9.24l4.46 4.76L5.82 21z"
+                    fill="#780900"
+                  />
                 </svg>
-                <span className="text-sm font-medium text-[#780900]">PARTICIPATING BRANDS</span>
+                <span className="text-sm font-medium text-[#780900]">
+                  PARTICIPATING BRANDS
+                </span>
               </div>
 
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-                Featuring <span className="text-[#780900]">500+</span> Leading Brands
+                Featuring <span className="text-[#780900]">500+</span> Leading
+                Brands
               </h2>
 
               <p className="text-gray-600 max-w-3xl mx-auto">
-                Join India's premier brands showcasing their exclusive Autumn-Winter 2026 collections
+                Join India's premier brands showcasing their exclusive
+                Autumn-Winter 2026 collections
               </p>
             </motion.div>
 
@@ -345,7 +435,10 @@ export default function EventAnnouncement() {
                   initial={{ opacity: 0, scale: 0.92 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: Math.min(0.6, idx * 0.03), duration: 0.45 }}
+                  transition={{
+                    delay: Math.min(0.6, idx * 0.03),
+                    duration: 0.45,
+                  }}
                   className="aspect-square bg-gray-50 border border-gray-200 rounded-xl overflow-hidden group hover:border-[#780900] transition-all duration-300 hover:shadow-lg"
                 >
                   <img
@@ -370,14 +463,25 @@ export default function EventAnnouncement() {
               >
                 View All Brands
                 {/* simple inline chevron SVG */}
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="ml-1">
-                  <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="ml-1"
+                >
+                  <path
+                    d="M9 18l6-6-6-6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </button>
             </div>
           </div>
         </section>
-
 
         {/* ---------- INSERTED: Pricing Section 2 ---------- */}
         <section className="py-20 bg-gray-50">
@@ -390,28 +494,64 @@ export default function EventAnnouncement() {
             >
               <div className="flex items-center justify-center gap-3 mb-4">
                 <DollarSign className="text-[#780900]" size={28} />
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Stall Packages</h2>
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                  Stall Packages
+                </h2>
               </div>
-              <p className="text-gray-600 max-w-2xl mx-auto">Choose the perfect space for your business</p>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Choose the perfect space for your business
+              </p>
             </motion.div>
 
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="border-b-2 border-gray-200">
-                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">PACKAGE</th>
-                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">SIZE</th>
-                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">RATE/SQ.M</th>
-                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">TOTAL</th>
+                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">
+                      PACKAGE
+                    </th>
+                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">
+                      SIZE
+                    </th>
+                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">
+                      RATE/SQ.M
+                    </th>
+                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">
+                      TOTAL
+                    </th>
                     <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900"></th>
                   </tr>
                 </thead>
                 <tbody>
                   {[
-                    { type: "Business Stall", size: "12 sq.m", rate: "₹5,900", total: "₹70,800", popular: false },
-                    { type: "Brand Wagon", size: "24 sq.m", rate: "₹6,900", total: "₹1,65,600", popular: false },
-                    { type: "Premium Wagon", size: "30 sq.m", rate: "₹6,900", total: "₹2,07,000", popular: true },
-                    { type: "Executive Wagon", size: "40 sq.m", rate: "₹6,900", total: "₹2,76,000", popular: false }
+                    {
+                      type: "Business Stall",
+                      size: "12 sq.m",
+                      rate: "₹5,900",
+                      total: "₹70,800",
+                      popular: false,
+                    },
+                    {
+                      type: "Brand Wagon",
+                      size: "24 sq.m",
+                      rate: "₹6,900",
+                      total: "₹1,65,600",
+                      popular: false,
+                    },
+                    {
+                      type: "Premium Wagon",
+                      size: "30 sq.m",
+                      rate: "₹6,900",
+                      total: "₹2,07,000",
+                      popular: true,
+                    },
+                    {
+                      type: "Executive Wagon",
+                      size: "40 sq.m",
+                      rate: "₹6,900",
+                      total: "₹2,76,000",
+                      popular: false,
+                    },
                   ].map((row, idx) => (
                     <motion.tr
                       key={idx}
@@ -419,10 +559,12 @@ export default function EventAnnouncement() {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.1 }}
                       viewport={{ once: true }}
-                      className={`border-b border-gray-100 hover:bg-white transition-colors ${row.popular ? 'bg-[#CE1446]/5' : ''}`}
+                      className={`border-b border-gray-100 hover:bg-white transition-colors ${row.popular ? "bg-[#CE1446]/5" : ""}`}
                     >
                       <td className="py-4 px-4">
-                        <div className="font-medium text-gray-900">{row.type}</div>
+                        <div className="font-medium text-gray-900">
+                          {row.type}
+                        </div>
                         {row.popular && (
                           <span className="inline-flex items-center gap-1 mt-1 px-2 py-1 bg-[#780900] text-white text-xs">
                             <Award size={10} />
@@ -431,9 +573,13 @@ export default function EventAnnouncement() {
                         )}
                       </td>
                       <td className="py-4 px-4 text-gray-700">{row.size}</td>
-                      <td className="py-4 px-4 font-medium text-gray-900">{row.rate}</td>
+                      <td className="py-4 px-4 font-medium text-gray-900">
+                        {row.rate}
+                      </td>
                       <td className="py-4 px-4">
-                        <div className="font-medium text-gray-900">{row.total}</div>
+                        <div className="font-medium text-gray-900">
+                          {row.total}
+                        </div>
                         <div className="text-xs text-gray-500">+ GST 18%</div>
                       </td>
                       <td className="py-4 px-4">
@@ -456,11 +602,31 @@ export default function EventAnnouncement() {
 
         <footer className="py-10 rounded  bg-gradient-to-r from-[#B2192B] to-[#780900]">
           <div className="mx-auto max-w-7xl px-4 md:px-10 text-center">
-            <h3 className="text-xl md:text-2xl font-bold text-white">Ready to Exhibit at SIGA Fair 2026?</h3>
-            <p className="text-white/90 mt-3 max-w-2xl mx-auto">Limited stalls available. Secure your spot today and connect with 10,000+ buyers from across India.</p>
+            <h3 className="text-xl md:text-2xl font-bold text-white">
+              Ready to Exhibit at SIGA Fair 2026?
+            </h3>
+            <p className="text-white/90 mt-3 max-w-2xl mx-auto">
+              Limited stalls available. Secure your spot today and connect with
+              10,000+ buyers from across India.
+            </p>
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <button onClick={() => setOpenReg(true)} className="px-6 py-3 bg-white text-[#780900] rounded-full font-semibold shadow" onMouseDown={ripple}>BOOK YOUR STALL NOW</button>
-              <a onClick={(e) => { e.preventDefault(); smoothScrollTo('highlights'); }} href="#highlights" className="px-4 py-2 rounded-full border border-white/30 text-white/90">Learn more</a>
+              <button
+                onClick={() => setOpenReg(true)}
+                className="px-6 py-3 bg-white text-[#780900] rounded-full font-semibold shadow"
+                onMouseDown={ripple}
+              >
+                BOOK YOUR STALL NOW
+              </button>
+              <a
+                onClick={(e) => {
+                  e.preventDefault();
+                  smoothScrollTo("highlights");
+                }}
+                href="#highlights"
+                className="px-4 py-2 rounded-full border border-white/30 text-white/90"
+              >
+                Learn more
+              </a>
             </div>
           </div>
         </footer>
@@ -472,15 +638,58 @@ export default function EventAnnouncement() {
               <div className="bg-white p-4 md:p-6 rounded-2xl shadow-lg">
                 <h3 className="text-lg font-bold mb-3">Fair Schedule</h3>
                 <div className="space-y-2">
-                  {[{ day: 'Check-in', date: '28th July 2026 (Mon)', time: '11:00 AM', activity: 'Stall setup begins' }, { day: 'Day 1', date: '29th July 2026 (Tue)', time: '10:00 AM - 8:00 PM', activity: 'Fair opens to visitors', highlight: true }, { day: 'Day 2', date: '30th July 2026 (Wed)', time: '10:00 AM - 8:00 PM', activity: 'Exhibition continues' }, { day: 'Day 3', date: '31st July 2026 (Thu)', time: '10:00 AM - 7:00 PM', activity: 'Final day of fair' }, { day: 'Check-out', date: '31st July 2026 (Thu)', time: '8:00 PM onwards', activity: 'Stall dismantling' }].map((r, i) => (
-                    <div key={i} className={`p-3 rounded-lg border ${r.highlight ? 'border-[#CE1446]/30 bg-[#fff6f6]' : 'border-gray-100 bg-white'} flex justify-between`}>
+                  {[
+                    {
+                      day: "Check-in",
+                      date: "28th July 2026 (Mon)",
+                      time: "11:00 AM",
+                      activity: "Stall setup begins",
+                    },
+                    {
+                      day: "Day 1",
+                      date: "29th July 2026 (Tue)",
+                      time: "10:00 AM - 8:00 PM",
+                      activity: "Fair opens to visitors",
+                      highlight: true,
+                    },
+                    {
+                      day: "Day 2",
+                      date: "30th July 2026 (Wed)",
+                      time: "10:00 AM - 8:00 PM",
+                      activity: "Exhibition continues",
+                    },
+                    {
+                      day: "Day 3",
+                      date: "31st July 2026 (Thu)",
+                      time: "10:00 AM - 7:00 PM",
+                      activity: "Final day of fair",
+                    },
+                    {
+                      day: "Check-out",
+                      date: "31st July 2026 (Thu)",
+                      time: "8:00 PM onwards",
+                      activity: "Stall dismantling",
+                    },
+                  ].map((r, i) => (
+                    <div
+                      key={i}
+                      className={`p-3 rounded-lg border ${r.highlight ? "border-[#CE1446]/30 bg-[#fff6f6]" : "border-gray-100 bg-white"} flex justify-between`}
+                    >
                       <div>
-                        <div className="text-sm font-semibold text-slate-900">{r.day}</div>
+                        <div className="text-sm font-semibold text-slate-900">
+                          {r.day}
+                        </div>
                         <div className="text-xs text-slate-500">{r.date}</div>
                       </div>
                       <div className="text-sm text-slate-700 text-right">
-                        <div className={`${r.highlight ? 'font-semibold text-[#780900]' : ''}`}>{r.time}</div>
-                        <div className="text-xs text-slate-500 mt-1">{r.activity}</div>
+                        <div
+                          className={`${r.highlight ? "font-semibold text-[#780900]" : ""}`}
+                        >
+                          {r.time}
+                        </div>
+                        <div className="text-xs text-slate-500 mt-1">
+                          {r.activity}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -488,23 +697,83 @@ export default function EventAnnouncement() {
               </div>
 
               <div className="bg-white p-4 md:p-6 rounded-2xl shadow-lg">
-                <h3 className="text-lg font-bold mb-3">Stall Packages & Pricing</h3>
+                <h3 className="text-lg font-bold mb-3">
+                  Stall Packages & Pricing
+                </h3>
                 <div className="space-y-3" id="packages">
-                  {[{ id: 0, type: 'Business Stall', size: '3m x 4m = 12 sq.m', rate: '₹5,900', cost: '₹70,800', includes: '1 Table, 2 Chairs, 3 Spot Lights, 1 LED Light' }, { id: 1, type: 'Brand Wagon Stall', size: '6m x 4m = 24 sq.m', rate: '₹6,900', cost: '₹1,65,600', includes: '2 Tables, 4 Chairs, 6 Spot Lights, 2 LED Lights' }, { id: 2, type: 'Brand Wagon Stall', size: '6m x 5m = 30 sq.m', rate: '₹6,900', cost: '₹2,07,000', includes: '3 Tables, 6 Chairs, 9 Spot Lights, 3 LED Lights' }, { id: 3, type: 'Brand Wagon Stall', size: '8m x 5m = 40 sq.m', rate: '₹6,900', cost: '₹2,76,000', includes: '4 Tables, 8 Chairs, 12 Spot Lights, 4 LED Lights' }].map((p) => (
-                    <div key={p.id} className="border rounded-lg overflow-hidden">
-                      <button type="button" onClick={() => setAccordionOpen((s) => (s === p.id ? null : p.id))} className="w-full flex items-center justify-between px-4 py-3 md:px-5 md:py-4 bg-white" aria-expanded={accordionOpen === p.id} aria-controls={`panel-${p.id}`}>
+                  {[
+                    {
+                      id: 0,
+                      type: "Business Stall",
+                      size: "3m x 4m = 12 sq.m",
+                      rate: "₹5,900",
+                      cost: "₹70,800",
+                      includes: "1 Table, 2 Chairs, 3 Spot Lights, 1 LED Light",
+                    },
+                    {
+                      id: 1,
+                      type: "Brand Wagon Stall",
+                      size: "6m x 4m = 24 sq.m",
+                      rate: "₹6,900",
+                      cost: "₹1,65,600",
+                      includes:
+                        "2 Tables, 4 Chairs, 6 Spot Lights, 2 LED Lights",
+                    },
+                    {
+                      id: 2,
+                      type: "Brand Wagon Stall",
+                      size: "6m x 5m = 30 sq.m",
+                      rate: "₹6,900",
+                      cost: "₹2,07,000",
+                      includes:
+                        "3 Tables, 6 Chairs, 9 Spot Lights, 3 LED Lights",
+                    },
+                    {
+                      id: 3,
+                      type: "Brand Wagon Stall",
+                      size: "8m x 5m = 40 sq.m",
+                      rate: "₹6,900",
+                      cost: "₹2,76,000",
+                      includes:
+                        "4 Tables, 8 Chairs, 12 Spot Lights, 4 LED Lights",
+                    },
+                  ].map((p) => (
+                    <div
+                      key={p.id}
+                      className="border rounded-lg overflow-hidden"
+                    >
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setAccordionOpen((s) => (s === p.id ? null : p.id))
+                        }
+                        className="w-full flex items-center justify-between px-4 py-3 md:px-5 md:py-4 bg-white"
+                        aria-expanded={accordionOpen === p.id}
+                        aria-controls={`panel-${p.id}`}
+                      >
                         <div className="text-left">
-                          <div className="text-sm font-medium text-slate-900">{p.type}</div>
+                          <div className="text-sm font-medium text-slate-900">
+                            {p.type}
+                          </div>
                           <div className="text-xs text-slate-500">{p.size}</div>
                         </div>
                         <div className="text-right">
-                          <div className="text-sm font-semibold text-slate-900">{p.cost}</div>
-                          <div className="text-xs text-slate-500">+ GST 18%</div>
+                          <div className="text-sm font-semibold text-slate-900">
+                            {p.cost}
+                          </div>
+                          <div className="text-xs text-slate-500">
+                            + GST 18%
+                          </div>
                         </div>
                       </button>
 
                       {accordionOpen === p.id && (
-                        <div id={`panel-${p.id}`} className="px-4 py-3 bg-[#fff8f8] text-sm text-slate-700">Includes: {p.includes}</div>
+                        <div
+                          id={`panel-${p.id}`}
+                          className="px-4 py-3 bg-[#fff8f8] text-sm text-slate-700"
+                        >
+                          Includes: {p.includes}
+                        </div>
                       )}
                     </div>
                   ))}
@@ -515,16 +784,34 @@ export default function EventAnnouncement() {
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="p-4 bg-white border rounded-2xl shadow-sm">
                 <h4 className="font-semibold">Payment Details</h4>
-                <div className="mt-2 text-sm text-slate-700">Cheque / NEFT / UPI. </div>
-                <div className="mt-2 text-sm text-slate-700">Account Name • South India Garment Association. </div>
-                <div className="mt-2 text-sm text-slate-700">Bank Details • Canara Bank, Shantinagar Branch, Bangalore. </div>
-                <div className="mt-2 text-sm text-slate-700"> IFSC: CNRB0000681 | Account: 0681201002725 </div>
+                <div className="mt-2 text-sm text-slate-700">
+                  Cheque / NEFT / UPI.{" "}
+                </div>
+                <div className="mt-2 text-sm text-slate-700">
+                  Account Name • South India Garment Association.{" "}
+                </div>
+                <div className="mt-2 text-sm text-slate-700">
+                  Bank Details • Canara Bank, Shantinagar Branch,
+                  Bangalore.{" "}
+                </div>
+                <div className="mt-2 text-sm text-slate-700">
+                  {" "}
+                  IFSC: CNRB0000681 | Account: 0681201002725{" "}
+                </div>
               </div>
 
               <div className="p-4 bg-white border rounded-2xl shadow-sm">
                 <h4 className="font-semibold">Contact</h4>
-                <div className="mt-2 text-sm text-slate-700"> SIGA Office: 96326 48525 <br /> Govind Mundra: 94484 61384<br /> Govind Garg: 88671 71060 </div>
-                 <div className="mt-2 text-sm text-slate-700"> Email & Website <br /> info.sigafair@gmail.com <br /> www.sigafair.com </div>
+                <div className="mt-2 text-sm text-slate-700">
+                  {" "}
+                  SIGA Office: 96326 48525 <br /> Govind Mundra: 94484 61384
+                  <br /> Govind Garg: 88671 71060{" "}
+                </div>
+                <div className="mt-2 text-sm text-slate-700">
+                  {" "}
+                  Email & Website <br /> info.sigafair@gmail.com <br />{" "}
+                  www.sigafair.com{" "}
+                </div>
               </div>
 
               <div className="p-4 bg-white border rounded-2xl shadow-sm">
@@ -535,37 +822,106 @@ export default function EventAnnouncement() {
                   <li>Stall allotment on 5th July 2026.</li>
                   <li>Strictly B2B.</li>
                 </ul>
-                <button onClick={downloadRegistrationForm} className="mt-3 w-full px-3 py-2 bg-gradient-to-r from-[#B2192B] to-[#780900] text-white rounded-md" onMouseDown={ripple}>Download Form</button>
+                <button
+                  onClick={downloadRegistrationForm}
+                  className="mt-3 w-full px-3 py-2 bg-gradient-to-r from-[#B2192B] to-[#780900] text-white rounded-md"
+                  onMouseDown={ripple}
+                >
+                  Download Form
+                </button>
               </div>
             </div>
           </div>
         </section>
-
-        
       </main>
 
       {/* modal */}
       <AnimatePresence>
         {openReg && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-60 flex items-center justify-center p-4 md:p-8">
-            <motion.div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setOpenReg(false)} />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-60 flex items-center justify-center p-4 md:p-8"
+          >
+            <motion.div
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+              onClick={() => setOpenReg(false)}
+            />
 
-            <motion.div ref={modalRef} role="dialog" aria-modal="true" aria-labelledby="reg-title" initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} transition={{ duration: 0.18 }} className="relative z-50 w-full max-w-lg bg-white rounded-2xl p-6 shadow-2xl">
-              <h3 id="reg-title" className="text-lg font-bold">Quick Registration</h3>
-              <p className="text-sm text-slate-600 mt-1">Fill in basic details — our team will get back to you.</p>
+            <motion.div
+              ref={modalRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="reg-title"
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.18 }}
+              className="relative z-50 w-full max-w-lg bg-white rounded-2xl p-6 shadow-2xl"
+            >
+              <h3 id="reg-title" className="text-lg font-bold">
+                Quick Registration
+              </h3>
+              <p className="text-sm text-slate-600 mt-1">
+                Fill in basic details — our team will get back to you.
+              </p>
 
               <form onSubmit={submitForm} className="mt-4 space-y-3">
-                <label className="block text-sm">Name<input required value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="mt-1 w-full px-3 py-2 border rounded-md" /></label>
-                <label className="block text-sm">Email<input required type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="mt-1 w-full px-3 py-2 border rounded-md" /></label>
-                <label className="block text-sm">Phone<input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="mt-1 w-full px-3 py-2 border rounded-md" /></label>
+                <label className="block text-sm">
+                  Name
+                  <input
+                    required
+                    value={form.name}
+                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    className="mt-1 w-full px-3 py-2 border rounded-md"
+                  />
+                </label>
+                <label className="block text-sm">
+                  Email
+                  <input
+                    required
+                    type="email"
+                    value={form.email}
+                    onChange={(e) =>
+                      setForm({ ...form, email: e.target.value })
+                    }
+                    className="mt-1 w-full px-3 py-2 border rounded-md"
+                  />
+                </label>
+                <label className="block text-sm">
+                  Phone
+                  <input
+                    value={form.phone}
+                    onChange={(e) =>
+                      setForm({ ...form, phone: e.target.value })
+                    }
+                    className="mt-1 w-full px-3 py-2 border rounded-md"
+                  />
+                </label>
 
                 <div className="flex items-center gap-3">
-                  <button type="submit" disabled={loading} className="px-4 py-2 bg-[#780900] text-white rounded-md">{loading ? "Submitting..." : "Submit"}</button>
-                  <button type="button" onClick={() => setOpenReg(false)} className="px-4 py-2 border rounded-md">Cancel</button>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="px-4 py-2 bg-[#780900] text-white rounded-md"
+                  >
+                    {loading ? "Submitting..." : "Submit"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setOpenReg(false)}
+                    className="px-4 py-2 border rounded-md"
+                  >
+                    Cancel
+                  </button>
                 </div>
               </form>
 
-              <div className="mt-4 text-xs text-slate-500">By submitting you agree to be contacted by SIGA for stall booking and related communication.</div>
+              <div className="mt-4 text-xs text-slate-500">
+                By submitting you agree to be contacted by SIGA for stall
+                booking and related communication.
+              </div>
             </motion.div>
           </motion.div>
         )}
@@ -573,9 +929,15 @@ export default function EventAnnouncement() {
 
       {/* mobile CTA */}
       <div className="fixed left-4 bottom-6 z-50 md:hidden">
-        <motion.button whileTap={{ scale: 0.95 }} onClick={() => setOpenReg(true)} className="px-4 py-3 rounded-full bg-[#780900] text-white shadow-lg" onMouseDown={ripple}>Register</motion.button>
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setOpenReg(true)}
+          className="px-4 py-3 rounded-full bg-[#780900] text-white shadow-lg"
+          onMouseDown={ripple}
+        >
+          Register
+        </motion.button>
       </div>
-
     </div>
   );
 }

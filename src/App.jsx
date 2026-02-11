@@ -68,7 +68,23 @@ function App() {
               path="/event"
               element={
                 <Suspense fallback={<SuspenseLoader />}>
-                  <EventAnnouncement/>
+                  <EventSection />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/event1"
+              element={
+                <Suspense fallback={<SuspenseLoader />}>
+                  <EventAnnouncement />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/event2"
+              element={
+                <Suspense fallback={<SuspenseLoader />}>
+                  <EventAnnounce />
                 </Suspense>
               }
             />
