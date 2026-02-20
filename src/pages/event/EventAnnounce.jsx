@@ -1,33 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Calendar, 
-  MapPin, 
-  Clock, 
-  Users, 
-  TrendingUp, 
-  DollarSign,
+import RegistrationModal from "@/components/ui/register-modal";
+import { motion } from "framer-motion";
+import {
   ArrowDown,
-  CheckCircle,
-  Building,
-  Mail,
-  Phone,
-  Globe,
   Award,
-  Target,
+  Building,
+  Calendar,
+  CheckCircle,
   ChevronRight,
-  Star
+  Clock,
+  DollarSign,
+  Globe,
+  Mail,
+  MapPin,
+  Phone,
+  Star,
+  Target,
+  TrendingUp,
+  Users
 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const EventAnnounce = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
-    seconds: 0
+    seconds: 0,
   });
 
-  useEffect(() => { 
+  useEffect(() => {
     const eventDate = new Date("July 29, 2026 10:00:00").getTime();
 
     const timer = setInterval(() => {
@@ -40,16 +41,18 @@ const EventAnnounce = () => {
           days: 0,
           hours: 0,
           minutes: 0,
-          seconds: 0
+          seconds: 0,
         });
         return;
       }
 
       setTimeLeft({
         days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        hours: Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+        ),
         minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        seconds: Math.floor((distance % (1000 * 60)) / 1000),
       });
     }, 1000);
 
@@ -60,13 +63,32 @@ const EventAnnounce = () => {
     { icon: <Users size={24} />, value: "500+", label: "Exhibiting Brands" },
     { icon: <TrendingUp size={24} />, value: "30+", label: "Years Experience" },
     { icon: <Users size={24} />, value: "10K+", label: "Expected Visitors" },
-    { icon: <DollarSign size={24} />, value: "1000Cr+", label: "Business Expected" }
+    {
+      icon: <DollarSign size={24} />,
+      value: "1000Cr+",
+      label: "Business Expected",
+    },
   ];
 
   const schedule = [
-    { day: "Day 1", date: "29 July", time: "10:00 AM - 8:00 PM", title: "Grand Opening" },
-    { day: "Day 2", date: "30 July", time: "10:00 AM - 8:00 PM", title: "B2B Meetings" },
-    { day: "Day 3", date: "31 July", time: "10:00 AM - 7:00 PM", title: "Closing Day" }
+    {
+      day: "Day 1",
+      date: "29 July",
+      time: "10:00 AM - 8:00 PM",
+      title: "Grand Opening",
+    },
+    {
+      day: "Day 2",
+      date: "30 July",
+      time: "10:00 AM - 8:00 PM",
+      title: "B2B Meetings",
+    },
+    {
+      day: "Day 3",
+      date: "31 July",
+      time: "10:00 AM - 7:00 PM",
+      title: "Closing Day",
+    },
   ];
 
   const allBrandLogos = [
@@ -85,12 +107,10 @@ const EventAnnounce = () => {
     "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=200&h=200&fit=crop&q=80&13",
     "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=200&h=200&fit=crop&q=80&14",
     "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=200&h=200&fit=crop&q=80&15",
-    "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?w=200&h=200&fit=crop&q=80&16"
+    "https://images.unsplash.com/photo-1520006403909-838d6b92c22e?w=200&h=200&fit=crop&q=80&16",
   ];
 
   const [openReg, setOpenReg] = useState(false);
-
-
 
   // form state for modal (if used)
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
@@ -131,7 +151,9 @@ const EventAnnounce = () => {
               className="inline-flex items-center gap-3 px-6 py-3 bg-[#780900] text-white mb-8"
             >
               <Target size={16} />
-              <span className="text-sm tracking-widest">OFFICIAL ANNOUNCEMENT</span>
+              <span className="text-sm tracking-widest">
+                OFFICIAL ANNOUNCEMENT
+              </span>
               <div className="w-1 h-1 bg-white rounded-full"></div>
               <span className="text-sm tracking-widest">2026 EDITION</span>
             </motion.div>
@@ -162,14 +184,20 @@ const EventAnnounce = () => {
               transition={{ delay: 0.3 }}
               className="mb-12"
             >
-              <div className="text-sm text-gray-600 mb-4 tracking-widest">EVENT STARTS IN</div>
+              <div className="text-sm text-gray-600 mb-4 tracking-widest">
+                EVENT STARTS IN
+              </div>
               <div className="flex gap-3 md:gap-6">
                 {Object.entries(timeLeft).map(([unit, value]) => (
                   <div key={unit} className="flex flex-col items-center">
                     <div className="w-16 h-16 md:w-20 md:h-20 bg-white border-2 border-gray-200 flex items-center justify-center mb-2">
-                      <span className="text-2xl md:text-3xl font-bold text-gray-900">{value.toString().padStart(2, '0')}</span>
+                      <span className="text-2xl md:text-3xl font-bold text-gray-900">
+                        {value.toString().padStart(2, "0")}
+                      </span>
                     </div>
-                    <span className="text-xs text-gray-600 uppercase tracking-wider">{unit}</span>
+                    <span className="text-xs text-gray-600 uppercase tracking-wider">
+                      {unit}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -188,7 +216,9 @@ const EventAnnounce = () => {
                 </div>
                 <div>
                   <div className="text-sm text-gray-500">DATE</div>
-                  <div className="text-lg font-semibold text-gray-900">29-31 July 2026</div>
+                  <div className="text-lg font-semibold text-gray-900">
+                    29-31 July 2026
+                  </div>
                 </div>
               </div>
 
@@ -198,7 +228,9 @@ const EventAnnounce = () => {
                 </div>
                 <div>
                   <div className="text-sm text-gray-500">VENUE</div>
-                  <div className="text-lg font-semibold text-gray-900">Palace Grounds, Bangalore</div>
+                  <div className="text-lg font-semibold text-gray-900">
+                    Palace Grounds, Bangalore
+                  </div>
                 </div>
               </div>
 
@@ -208,7 +240,9 @@ const EventAnnounce = () => {
                 </div>
                 <div>
                   <div className="text-sm text-gray-500">TIMINGS</div>
-                  <div className="text-lg font-semibold text-gray-900">10:00 AM - 8:00 PM</div>
+                  <div className="text-lg font-semibold text-gray-900">
+                    10:00 AM - 8:00 PM
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -244,12 +278,22 @@ const EventAnnounce = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.6, repeat: Infinity, repeatType: "reverse", duration: 2 }}
+              transition={{
+                delay: 0.6,
+                repeat: Infinity,
+                repeatType: "reverse",
+                duration: 2,
+              }}
               className="flex flex-col items-center"
             >
-              <span className="text-sm text-gray-500 mb-2">Scroll to explore</span>
+              <span className="text-sm text-gray-500 mb-2">
+                Scroll to explore
+              </span>
               <div className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center">
-                <ArrowDown size={12} className="text-gray-400 mt-2 animate-bounce" />
+                <ArrowDown
+                  size={12}
+                  className="text-gray-400 mt-2 animate-bounce"
+                />
               </div>
             </motion.div>
           </div>
@@ -274,7 +318,9 @@ const EventAnnounce = () => {
                     {stat.icon}
                   </div>
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-[#780900] mb-2">{stat.value}</div>
+                <div className="text-3xl md:text-4xl font-bold text-[#780900] mb-2">
+                  {stat.value}
+                </div>
                 <div className="text-gray-600">{stat.label}</div>
               </motion.div>
             ))}
@@ -293,13 +339,17 @@ const EventAnnounce = () => {
           >
             <div className="inline-flex items-center gap-3 px-6 py-2 bg-[#CE1446]/10 rounded-full mb-6">
               <Star className="text-[#780900]" size={16} />
-              <span className="text-sm font-medium text-[#780900]">PARTICIPATING BRANDS</span>
+              <span className="text-sm font-medium text-[#780900]">
+                PARTICIPATING BRANDS
+              </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Featuring <span className="text-[#780900]">500+</span> Leading Brands
+              Featuring <span className="text-[#780900]">500+</span> Leading
+              Brands
             </h2>
             <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-              Join India's premier brands showcasing their exclusive Autumn-Winter 2026 collections
+              Join India's premier brands showcasing their exclusive
+              Autumn-Winter 2026 collections
             </p>
           </motion.div>
 
@@ -310,7 +360,9 @@ const EventAnnounce = () => {
                 key={idx}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: Math.floor(idx / 8) * 0.1 + (idx % 8) * 0.05 }}
+                transition={{
+                  delay: Math.floor(idx / 8) * 0.1 + (idx % 8) * 0.05,
+                }}
                 viewport={{ once: true }}
                 className="aspect-square bg-gray-50 border border-gray-200 rounded-xl overflow-hidden group hover:border-[#780900] transition-all duration-300 hover:shadow-lg"
               >
@@ -325,13 +377,35 @@ const EventAnnounce = () => {
 
           {/* Brand Categories */}
           <div className="bg-gray-50 rounded-2xl p-8 mb-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Brand Categories</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+              Brand Categories
+            </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { name: "Men's Wear", count: "190+", icon: "👔", color: "bg-blue-100 text-blue-800" },
-                { name: "Women's Wear", count: "230+", icon: "👗", color: "bg-pink-100 text-pink-800" },
-                { name: "Kid's Wear", count: "70+", icon: "👶", color: "bg-yellow-100 text-yellow-800" },
-                { name: "Accessories", count: "50+", icon: "👒", color: "bg-purple-100 text-purple-800" }
+                {
+                  name: "Men's Wear",
+                  count: "190+",
+                  icon: "👔",
+                  color: "bg-blue-100 text-blue-800",
+                },
+                {
+                  name: "Women's Wear",
+                  count: "230+",
+                  icon: "👗",
+                  color: "bg-pink-100 text-pink-800",
+                },
+                {
+                  name: "Kid's Wear",
+                  count: "70+",
+                  icon: "👶",
+                  color: "bg-yellow-100 text-yellow-800",
+                },
+                {
+                  name: "Accessories",
+                  count: "50+",
+                  icon: "👒",
+                  color: "bg-purple-100 text-purple-800",
+                },
               ].map((category, idx) => (
                 <motion.div
                   key={idx}
@@ -341,12 +415,20 @@ const EventAnnounce = () => {
                   viewport={{ once: true }}
                   className="bg-white p-6 rounded-xl text-center hover:shadow-md transition-shadow"
                 >
-                  <div className={`text-2xl mb-3 w-12 h-12 rounded-full flex items-center justify-center mx-auto ${category.color}`}>
+                  <div
+                    className={`text-2xl mb-3 w-12 h-12 rounded-full flex items-center justify-center mx-auto ${category.color}`}
+                  >
                     {category.icon}
                   </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-2">{category.name}</h4>
-                  <div className="text-2xl font-bold text-[#780900]">{category.count}</div>
-                  <p className="text-sm text-gray-500 mt-2">Participating Brands</p>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                    {category.name}
+                  </h4>
+                  <div className="text-2xl font-bold text-[#780900]">
+                    {category.count}
+                  </div>
+                  <p className="text-sm text-gray-500 mt-2">
+                    Participating Brands
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -356,8 +438,12 @@ const EventAnnounce = () => {
           <div className="bg-gradient-to-r from-[#CE1446]/5 to-[#CE1446]/10 rounded-2xl p-8">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900">Premium Brand Patners</h3>
-                <p className="text-gray-600">Exclusive preview of featured brands</p>
+                <h3 className="text-2xl font-bold text-gray-900">
+                  Premium Brand Patners
+                </h3>
+                <p className="text-gray-600">
+                  Exclusive preview of featured brands
+                </p>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-[#780900] rounded-full animate-pulse"></div>
@@ -384,22 +470,32 @@ const EventAnnounce = () => {
                       />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900">Premium Brand #{item}</h4>
-                      <p className="text-sm text-gray-500">Established 199{item * 5}</p>
+                      <h4 className="font-bold text-gray-900">
+                        Premium Brand #{item}
+                      </h4>
+                      <p className="text-sm text-gray-500">
+                        Established 199{item * 5}
+                      </p>
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <div className="flex justify-between text-sm">  
+                    <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Products:</span>
-                      <span className="font-medium text-gray-900">250+ SKUs</span>
+                      <span className="font-medium text-gray-900">
+                        250+ SKUs
+                      </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Exports:</span>
-                      <span className="font-medium text-gray-900">20+ Countries</span>
+                      <span className="font-medium text-gray-900">
+                        20+ Countries
+                      </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-gray-600">Showcasing:</span>
-                      <span className="font-medium text-[#780900]">AW 2026 Collection</span>
+                      <span className="font-medium text-[#780900]">
+                        AW 2026 Collection
+                      </span>
                     </div>
                   </div>
                 </motion.div>
@@ -425,9 +521,10 @@ const EventAnnounce = () => {
                 </h2>
               </div>
               <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                For over three decades, SIGA Fair has been South India's premier platform connecting manufacturers 
-                with retailers. Experience the largest showcase of Autumn-Winter fashion with exclusive previews 
-                and unparalleled networking opportunities.
+                For over three decades, SIGA Fair has been South India's premier
+                platform connecting manufacturers with retailers. Experience the
+                largest showcase of Autumn-Winter fashion with exclusive
+                previews and unparalleled networking opportunities.
               </p>
               <div className="space-y-4 mb-8">
                 {[
@@ -436,7 +533,7 @@ const EventAnnounce = () => {
                   "B2B Business Meetings",
                   "Trend Forecasting Sessions",
                   "Industry Networking Events",
-                  "International Buyer Delegations"
+                  "International Buyer Delegations",
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-3">
                     <CheckCircle className="text-[#780900]" size={18} />
@@ -475,9 +572,13 @@ const EventAnnounce = () => {
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <Calendar className="text-[#780900]" size={28} />
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Event Schedule</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                Event Schedule
+              </h2>
             </div>
-            <p className="text-gray-600 max-w-2xl mx-auto">Three days of intensive business networking and exhibitions</p>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Three days of intensive business networking and exhibitions
+            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -488,35 +589,41 @@ const EventAnnounce = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.2 }}
                 viewport={{ once: true }}
-                className={`p-8 bg-white border-2 ${idx === 0 ? 'border-[#780900]' : 'border-gray-100'} hover:border-[#780900] transition-colors`}
+                className={`p-8 bg-white border-2 ${idx === 0 ? "border-[#780900]" : "border-gray-100"} hover:border-[#780900] transition-colors`}
               >
                 <div className="text-center mb-6">
                   <div className="text-sm text-gray-500 mb-2 flex items-center justify-center gap-2">
                     <Clock size={14} />
                     {day.day}
                   </div>
-                  <div className="text-2xl font-bold text-gray-900 mb-2">{day.date}</div>
-                  <div className="text-lg text-[#780900] font-medium">{day.time}</div>
+                  <div className="text-2xl font-bold text-gray-900 mb-2">
+                    {day.date}
+                  </div>
+                  <div className="text-lg text-[#780900] font-medium">
+                    {day.time}
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">{day.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                  {day.title}
+                </h3>
                 <ul className="space-y-3 text-gray-600">
                   {idx === 0 && [
                     "Inauguration Ceremony",
                     "CEO Roundtable",
                     "Networking Lunch",
-                    "Exhibition Opens"
+                    "Exhibition Opens",
                   ]}
                   {idx === 1 && [
                     "B2B Meetings",
                     "Trend Analysis Session",
                     "Product Launches",
-                    "Evening Cocktail"
+                    "Evening Cocktail",
                   ]}
                   {idx === 2 && [
                     "Final Business Deals",
                     "Awards Ceremony",
                     "Closing Gala",
-                    "Check-out begins at 8 PM"
+                    "Check-out begins at 8 PM",
                   ]}
                 </ul>
               </motion.div>
@@ -536,28 +643,64 @@ const EventAnnounce = () => {
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <DollarSign className="text-[#780900]" size={28} />
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Stall Packages</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                Stall Packages
+              </h2>
             </div>
-            <p className="text-gray-600 max-w-2xl mx-auto">Choose the perfect space for your business</p>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Choose the perfect space for your business
+            </p>
           </motion.div>
 
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b-2 border-gray-200">
-                  <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">PACKAGE</th>
-                  <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">SIZE</th>
-                  <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">RATE/SQ.M</th>
-                  <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">TOTAL</th>
+                  <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">
+                    PACKAGE
+                  </th>
+                  <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">
+                    SIZE
+                  </th>
+                  <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">
+                    RATE/SQ.M
+                  </th>
+                  <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900">
+                    TOTAL
+                  </th>
                   <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900"></th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { type: "Business Stall", size: "12 sq.m", rate: "₹5,900", total: "₹70,800", popular: false },
-                  { type: "Brand Wagon", size: "24 sq.m", rate: "₹6,900", total: "₹1,65,600", popular: false },
-                  { type: "Premium Wagon", size: "30 sq.m", rate: "₹6,900", total: "₹2,07,000", popular: true },
-                  { type: "Executive Wagon", size: "40 sq.m", rate: "₹6,900", total: "₹2,76,000", popular: false }
+                  {
+                    type: "Business Stall",
+                    size: "12 sq.m",
+                    rate: "₹5,900",
+                    total: "₹70,800",
+                    popular: false,
+                  },
+                  {
+                    type: "Brand Wagon",
+                    size: "24 sq.m",
+                    rate: "₹6,900",
+                    total: "₹1,65,600",
+                    popular: false,
+                  },
+                  {
+                    type: "Premium Wagon",
+                    size: "30 sq.m",
+                    rate: "₹6,900",
+                    total: "₹2,07,000",
+                    popular: true,
+                  },
+                  {
+                    type: "Executive Wagon",
+                    size: "40 sq.m",
+                    rate: "₹6,900",
+                    total: "₹2,76,000",
+                    popular: false,
+                  },
                 ].map((row, idx) => (
                   <motion.tr
                     key={idx}
@@ -565,10 +708,12 @@ const EventAnnounce = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.1 }}
                     viewport={{ once: true }}
-                    className={`border-b border-gray-100 hover:bg-white transition-colors ${row.popular ? 'bg-[#CE1446]/5' : ''}`}
+                    className={`border-b border-gray-100 hover:bg-white transition-colors ${row.popular ? "bg-[#CE1446]/5" : ""}`}
                   >
                     <td className="py-4 px-4">
-                      <div className="font-medium text-gray-900">{row.type}</div>
+                      <div className="font-medium text-gray-900">
+                        {row.type}
+                      </div>
                       {row.popular && (
                         <span className="inline-flex items-center gap-1 mt-1 px-2 py-1 bg-[#780900] text-white text-xs">
                           <Award size={10} />
@@ -577,9 +722,13 @@ const EventAnnounce = () => {
                       )}
                     </td>
                     <td className="py-4 px-4 text-gray-700">{row.size}</td>
-                    <td className="py-4 px-4 font-medium text-gray-900">{row.rate}</td>
+                    <td className="py-4 px-4 font-medium text-gray-900">
+                      {row.rate}
+                    </td>
                     <td className="py-4 px-4">
-                      <div className="font-medium text-gray-900">{row.total}</div>
+                      <div className="font-medium text-gray-900">
+                        {row.total}
+                      </div>
                       <div className="text-xs text-gray-500">+ GST 18%</div>
                     </td>
                     <td className="py-4 px-4">
@@ -608,9 +757,12 @@ const EventAnnounce = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Limited Stalls Available</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+              Limited Stalls Available
+            </h2>
             <p className="text-white/90 mb-8 max-w-2xl mx-auto text-lg">
-              Book your stall before 5th July 2025 to secure prime location. 50% advance payment required.
+              Book your stall before 5th July 2025 to secure prime location. 50%
+              advance payment required.
             </p>
 
             {/* Single button (no nested button) */}
@@ -637,7 +789,9 @@ const EventAnnounce = () => {
               </div>
               <div className="space-y-2 text-gray-400">
                 <p>South India Garments Association</p>
-                <p className="text-sm">30 Years of Excellence in Garment Industry</p>
+                <p className="text-sm">
+                  30 Years of Excellence in Garment Industry
+                </p>
               </div>
             </div>
 
@@ -684,89 +838,16 @@ const EventAnnounce = () => {
         </div>
       </section>
 
-      {/* Registration modal */}
-      <AnimatePresence>
-        {openReg && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-60 flex items-center justify-center p-4 md:p-8"
-          >
-            <motion.div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setOpenReg(false)} />
-
-            <motion.div
-              role="dialog"
-              aria-modal="true"
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.18 }}
-              className="relative z-50 w-full max-w-lg bg-white rounded-2xl p-6 shadow-2xl"
-            >
-              <h3 className="text-lg font-bold">Quick Registration</h3>
-              <p className="text-sm text-slate-600 mt-1">Fill in basic details — our team will get back to you.</p>
-
-              <form onSubmit={submitForm} className="mt-4 space-y-3">
-                <label className="block text-sm">Name
-                  <input
-                    required
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="mt-1 w-full px-3 py-2 border rounded-md"
-                  />
-                </label>
-
-                <label className="block text-sm">Email
-                  <input
-                    required
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="mt-1 w-full px-3 py-2 border rounded-md"
-                  />
-                </label>
-
-                <label className="block text-sm">Phone
-                  <input
-                    value={form.phone}
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="mt-1 w-full px-3 py-2 border rounded-md"
-                  />
-                </label>
-
-                <div className="flex items-center gap-3">
-                  <button type="submit" disabled={loading} className="px-4 py-2 bg-[#780900] text-white rounded-md">{loading ? "Submitting..." : "Submit"}</button>
-                  <button type="button" onClick={() => setOpenReg(false)} className="px-4 py-2 border rounded-md">Cancel</button>
-                </div>
-              </form>
-
-              <div className="mt-4 text-xs text-slate-500">By submitting you agree to be contacted by SIGA for stall booking and related communication.</div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <RegistrationModal
+        open={openReg}
+        onClose={() => setOpenReg(false)}
+        form={form}
+        setForm={setForm}
+        onSubmit={submitForm}
+        loading={loading}
+      />
     </div>
   );
 };
-
-const Download = (props) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    {...props}
-  >
-    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-    <polyline points="7 10 12 15 17 10" />
-    <line x1="12" y1="15" x2="12" y2="3" />
-  </svg>
-);
 
 export default EventAnnounce;

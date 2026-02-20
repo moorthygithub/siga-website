@@ -80,14 +80,14 @@ function App() {
                 </Suspense>
               }
             />
-            <Route
+            {/* <Route
               path="/event2"
               element={
                 <Suspense fallback={<SuspenseLoader />}>
                   <EventAnnounce />
                 </Suspense>
               }
-            />
+            /> */}
             <Route
               path="/service"
               element={
